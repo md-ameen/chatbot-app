@@ -1,0 +1,96 @@
+<!-- chatbot_ui.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        /* Add your CSS styles here */
+        /* This is just a basic example, you can style it further as per your requirements */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #chat-container {
+            width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+        }
+        #user-input {
+            width: calc(100% - 70px); /* Adjust width for the button */
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-right: 5px;
+        }
+        #send-button {
+            padding: 8px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #send-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-messages">
+            <!-- Chat messages will be displayed here -->
+        </div>
+        <form id="chat-form" method="post"> <!-- Form for user input -->
+            {% csrf_token %} <!-- Add CSRF token for security -->
+            <input type="text" id="user-input" name="user_input" placeholder="Type your message..."> <!-- User input field -->
+            <button type="submit" id="send-button">Send</button> <!-- Submit button -->
+        </form>
+    </div>
+
+    <script>
+        // Add your JavaScript code here
+        const chatForm = document.getElementById('chat-form');
+        const chatMessages = document.getElementById('chat-messages');
+
+        chatForm.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const userInput = document.getElementById('user-input').value; // Get user input from input field
+
+            // Send user input to the server using fetch API
+            const response = await fetch('', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}' // Add CSRF token for security
+                },
+                body: JSON.stringify({ user_input: userInput })
+            });
+
+            // Parse JSON response
+            const responseData = await response.json();
+
+            // Display response in chat messages
+            const responseElement = document.createElement('div');
+            responseElement.textContent = 'Bot: ' + responseData.response;
+            chatMessages.appendChild(responseElement);
+
+            // Clear input field
+            document.getElementById('user-input').value = '';
+        });
+    </script>
+</body>
+</html>
