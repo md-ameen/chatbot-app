@@ -1,9 +1,8 @@
 # chatbot/urls.py
 
 from django.urls import path
-from .views import chatbot_view, pdf_view
+from .views import name_input_view
 
 urlpatterns = [
-    path('', chatbot_view, name='chatbot-app'),
-    path('pdf_response/', pdf_view)
+    path('', name_input_view, name='name_input'),
 ]

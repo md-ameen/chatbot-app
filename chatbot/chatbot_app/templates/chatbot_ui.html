@@ -53,9 +53,9 @@
         <div id="chat-messages">
             <!-- Chat messages will be displayed here -->
         </div>
-        <form id="chat-form" method="post"> <!-- Form for user input -->
+        <form id="chat-form" method="POST"> <!-- Form for user input -->
             {% csrf_token %} <!-- Add CSRF token for security -->
-            <input type="text" id="user-input" name="user_input" placeholder="Type your message..."> <!-- User input field -->
+            <input type="text" id="user-input" name="userInput" placeholder="Type your message..."> <!-- User input field -->
             <button type="submit" id="send-button">Send</button> <!-- Submit button -->
         </form>
     </div>

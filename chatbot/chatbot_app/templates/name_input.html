@@ -1,0 +1,117 @@
+<!-- name_input.html -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Name Input Form</title>
+</head>
+<body>
+    <h2>Type something</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    {% if response %}
+        <div>
+            <h3>Response:</h3>
+            <p>{{ response }}</p>
+        </div>
+    {% endif %}
+</body>
+</html> -->
+
+<!-- name_input.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chatbot</title>
+    <style>
+        /* CSS for chat UI */
+        /* .chat-container {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 20px auto;
+            max-width: 400px;
+            height: 400px;
+            overflow-y: auto;
+        }
+        .user-message {
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 5px;
+            text-align: right;
+        }
+        .bot-message {
+            background-color: #d4e8e5;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 5px;
+        } */
+                /* Add your CSS styles here */
+        /* This is just a basic example, you can style it further as per your requirements */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #chat-container {
+            width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+        }
+        #user-input {
+            width: calc(100% - 70px); /* Adjust width for the button */
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-right: 5px;
+        }
+        #send-button {
+            padding: 8px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #send-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="chat-container">
+        <div id="chat-messages">
+            <!-- Chat messages will be displayed here -->
+            {% if response %}
+                <div>
+                    <p>{{ response }}</p>
+                </div>
+            {% endif %}
+        </div>
+        <form id="chat-form" method="post"> <!-- Form for user input -->
+            {% csrf_token %}
+            <input type="text" id="user_input" name="name" placeholder="Type your message...">
+            <button type="submit" id="send-button">Send</button>
+        </form>
+    </div>
+
+</body>
+</html>
+
+
+
